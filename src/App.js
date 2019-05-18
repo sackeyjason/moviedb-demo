@@ -38,6 +38,10 @@ class App extends Component {
     });
   }
 
+  showModal(data) {
+    console.log(data);
+  }
+
   render() {
     return (
       <div className="App">
@@ -49,13 +53,22 @@ class App extends Component {
             <Tab>People</Tab>
           </TabList>
           <TabPanel>
-            <List items={this.state.movies} />
+            <List
+              items={this.state.movies}
+              modal={this.showModal}
+            />
           </TabPanel>
           <TabPanel>
-          <List items={this.state.tv} />
+            <List
+              items={this.state.tv}
+              modal={this.showModal}
+            />
           </TabPanel>
           <TabPanel>
-            <List items={this.state.people} />
+            <List
+              items={this.state.people}
+              modal={this.showModal}
+            />
           </TabPanel>
         </Tabs>
       </div>

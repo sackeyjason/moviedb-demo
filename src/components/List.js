@@ -1,14 +1,16 @@
 import React from 'react';
 
 function List(props) {
-    console.log(props.items)
-    return (
-        <React.Fragment>
-            {props.items.map(item => (
-                <h3>{item.title}</h3>
-            ))}
-        </React.Fragment>
-    )
+  return (
+    <ol>
+      {props.items.map(item => (
+        <li key={item.id}>
+          <a href="#!"
+            onClick={props.modal.bind(null, item)}>{item.title}</a>
+        </li>
+      ))}
+    </ol>
+  )
 }
 
 export default List;
