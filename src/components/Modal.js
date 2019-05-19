@@ -6,7 +6,8 @@ if (document.getElementById('root')) {
 }
 
 function Modal(props) {
-  let overview, knownFor;
+  console.log(props.data);
+  let overview, knownFor, image, backgroundImage;
   if (props.data.overview) overview = <p>{props.data.overview}</p>;
   if (props.data.known_for) {
     knownFor = (
@@ -24,6 +25,25 @@ function Modal(props) {
       </React.Fragment>
     )
   }
+  if (props.imgConfig) {
+    if (props.data.profile_path) {
+      image = <img
+        alt=""
+        style={{
+          float: 'right',
+          marginLeft: 20
+        }}
+        src={props.imgConfig.base_url + props.imgConfig.profile_sizes[1] + props.data.profile_path}        
+      />
+    }
+    if (props.data.backdrop_path) {
+      backgroundImage = <img
+        alt=""
+        style={{width: '100%'}}
+        src={props.imgConfig.base_url + props.imgConfig.backdrop_sizes[1] + props.data.backdrop_path}
+      />;
+    }
+  }
 
   return (
     <ReactModal
@@ -34,7 +54,9 @@ function Modal(props) {
           maxWidth: '30rem',
           marginLeft: 'auto',
           marginRight: 'auto',
-          bottom: 'auto'
+          bottom: 'auto',
+          maxHeight: '80vh',
+          yOverflow: 'scroll'
         }
       }}
     >
@@ -47,11 +69,13 @@ function Modal(props) {
             padding: 0
           }}
           onClick={props.reqestCloseHandler}
-        >&times; close</button>
+          >&times; close</button>
       </div>
+      {image}
       <h2>{props.data.title || props.data.name}</h2>
       {overview}
       {knownFor}
+      {backgroundImage}      
     </ReactModal>
   )
 }

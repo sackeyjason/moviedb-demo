@@ -23,6 +23,10 @@ class App extends Component {
   
   componentDidMount() {
     let api = new Api('d0aea524bd07ed49cbc26dff63f357dd');
+    api.request('configuration', (response) => {
+      console.log(response.images);
+      this.setState({imgConfig: response.images});
+    });
     api.request('movie', (response) => {
       this.setState({
         movies: response.results.map(item => Object.assign(
@@ -91,6 +95,7 @@ class App extends Component {
           data={this.state.modalData}
           reqestCloseHandler={this.hideModal.bind(this)}
           clickHandler={this.showModal.bind(this)}
+          imgConfig={this.state.imgConfig}
         />
       </div>
     );

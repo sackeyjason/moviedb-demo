@@ -20,6 +20,8 @@ function Api(key) {
         '?include_video=false&include_adult=false&sort_by=popularity.desc&';
     } else if (type === 'people') {
       requestUrl += 'person/popular?';
+    } else if (type === 'configuration') {
+      requestUrl += 'configuration?';
     }
     
     requestUrl += 'language=en-US&page=1&api_key=' + key;
