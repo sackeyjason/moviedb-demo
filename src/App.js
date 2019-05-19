@@ -56,7 +56,7 @@ class App extends Component {
 
   handleSearchChange(event) {
     this.setState({
-      search: event.target.value || ''
+      search: event.target.value
     });
   }
 
@@ -70,16 +70,15 @@ class App extends Component {
             <Tab>TV Shows</Tab>
             <Tab>People</Tab>
           </TabList>
-          {[this.state.movies,
-            this.state.tv,
-            this.state.people].map((panelItems, index) => (
+          {['movies', 'tv', 'people'].map((type, index) => (
             <TabPanel key={index}>
               <input
+                type="text"
                 onChange={this.handleSearchChange.bind(this)}
                 value={this.state.search}
               />
               <List
-                items={panelItems}
+                items={this.state[type]}
                 filter={this.state.search}
                 clickHandler={this.showModal.bind(this)}
               />

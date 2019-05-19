@@ -4,6 +4,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.App {
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
 .entertainment-list a {
   color: inherit;
 }

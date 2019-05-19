@@ -1,8 +1,9 @@
 function Api(key) {
   this.key = key;
   this.request = function (type, callback) {
-    var data = "{}";
-    var xhr = new XMLHttpRequest();
+    let data = "{}";
+    let requestUrl = '';
+    const xhr = new XMLHttpRequest();
     xhr.withCredentials = false;
 
     xhr.addEventListener("readystatechange", function () {

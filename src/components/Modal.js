@@ -4,9 +4,8 @@ import ReactModal from 'react-modal';
 ReactModal.setAppElement('#root');
 
 function Modal(props) {
-  let overview = props.data.overview && <p>{props.data.overview}</p>;
-  let knownFor;
-
+  let overview, knownFor;
+  if (props.data.overview) overview = <p>{props.data.overview}</p>;
   if (props.data.known_for) {
     knownFor = (
       <React.Fragment>
@@ -28,6 +27,14 @@ function Modal(props) {
     <ReactModal
       isOpen={props.isActive}
       onRequestClose={props.reqestCloseHandler}
+      style={{
+        content: {
+          maxWidth: '30rem',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          bottom: 'auto'
+        }
+      }}
     >
       <div style={{textAlign: 'right'}}>
         <button
