@@ -2,7 +2,7 @@ function Api(key) {
   this.key = key;
   this.request = function (type, callback) {
     let data = "{}";
-    let requestUrl = '';
+    //let requestUrl = '';
     const xhr = new XMLHttpRequest();
     xhr.withCredentials = false;
 

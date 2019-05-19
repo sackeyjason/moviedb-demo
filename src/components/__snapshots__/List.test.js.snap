@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`filters item names 1`] = `
+<ol
+  className="entertainment-list"
+>
+  <li>
+    <a
+      href="#!"
+      onClick={[Function]}
+    >
+      cat
+    </a>
+  </li>
+</ol>
+`;
+
+exports[`renders item names 1`] = `
+<ol
+  className="entertainment-list"
+>
+  <li>
+    <a
+      href="#!"
+      onClick={[Function]}
+    >
+      cat
+    </a>
+  </li>
+  <li>
+    <a
+      href="#!"
+      onClick={[Function]}
+    >
+      dog
+    </a>
+  </li>
+</ol>
+`;

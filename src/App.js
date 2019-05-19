@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-
 import "react-tabs/style/react-tabs.css";
 import Api from './api';
 import List from './components/List';
 import Modal from './components/Modal';
-
 
 class App extends Component {
   constructor(props) {

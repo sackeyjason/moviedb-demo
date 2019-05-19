@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 
-ReactModal.setAppElement('#root');
+if (document.getElementById('root')) {
+  ReactModal.setAppElement('#root');
+}
 
 function Modal(props) {
   let overview, knownFor;
