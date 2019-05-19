@@ -39,7 +39,6 @@ class App extends Component {
   }
 
   showModal(data) {
-    console.log(data);
     this.setState({
       modalData: data,
       modalActive: true
@@ -61,20 +60,24 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>That's entertainment</h1>
+        <h1>Media explorer</h1>
         <Tabs>
           <TabList>
             <Tab>Movies</Tab>
             <Tab>TV Shows</Tab>
             <Tab>People</Tab>
           </TabList>
-          {['movies', 'tv', 'people'].map((type, index) => (
-            <TabPanel key={index}>
-              <input
-                type="text"
-                onChange={this.handleSearchChange.bind(this)}
-                value={this.state.search}
-              />
+          <label>
+            Search
+            <input
+              type="text"
+              onChange={this.handleSearchChange.bind(this)}
+              value={this.state.search}
+              style={{marginLeft: 10}}
+            />
+          </label>
+          {['movies', 'tv', 'people'].map((type) => (
+            <TabPanel key={type}>
               <List
                 items={this.state[type]}
                 filter={this.state.search}

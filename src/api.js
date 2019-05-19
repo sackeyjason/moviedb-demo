@@ -1,22 +1,29 @@
 function Api(key) {
-  this.key = key;
   this.request = function (type, callback) {
     let data = "{}";
-    //let requestUrl = '';
+    let requestUrl = 'https://api.themoviedb.org/3/';
     const xhr = new XMLHttpRequest();
-    xhr.withCredentials = false;
 
+    xhr.withCredentials = false;
     xhr.addEventListener("readystatechange", function () {
       if (this.readyState === this.DONE) {
-        callback(JSON.parse(this.responseText));
+        try {
+          callback(JSON.parse(this.responseText));
+        } catch(error) {
+          console.log(error);
+        }
       }
     });
 
-    if (type === 'people') {
-      xhr.open("GET", "https://api.themoviedb.org/3/person/popular?language=en-US&page=1&api_key=" + this.key);
-    } else {
-      xhr.open("GET", "https://api.themoviedb.org/3/discover/" + type + "?page=1&include_video=false&include_adult=false&sort_by=popularity.desc&language=en-US&api_key=" + this.key);
+    if (type === 'movie' || type === 'tv') {
+      requestUrl += 'discover/' + type +
+        '?include_video=false&include_adult=false&sort_by=popularity.desc&';
+    } else if (type === 'people') {
+      requestUrl += 'person/popular?';
     }
+    
+    requestUrl += 'language=en-US&page=1&api_key=' + key;
+    xhr.open('GET', requestUrl);
     xhr.send(data);
   }
 }
