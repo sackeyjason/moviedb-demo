@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+
 import "react-tabs/style/react-tabs.css";
-import List from './components/List';
 import Api from './api';
+import List from './components/List';
+import Modal from './components/Modal';
+
 
 class App extends Component {
   constructor(props) {
@@ -11,35 +14,50 @@ class App extends Component {
     this.state = {
       movies: [],
       tv: [],
-      people: []
+      people: [],
+
+      modalActive: false,
+      modalData: {},
+
+      search: ''
     }
   }
   
   componentDidMount() {
-    this.Api = new Api('d0aea524bd07ed49cbc26dff63f357dd');
-    this.Api.request('movie', (response) => {
+    let api = new Api('d0aea524bd07ed49cbc26dff63f357dd');
+    api.request('movie', (response) => {
       this.setState({
-        movies: response.results
+        movies: response.results.map(item => Object.assign(
+          item, {name: item.title})
+        )
       })
     });
-    this.Api.request('tv', (response) => {
-      this.setState({
-        tv: response.results.map(item => Object.assign(item, {
-          title: item.name
-        }))
-      })
+    api.request('tv', (response) => {
+      this.setState({tv: response.results})
     });
-    this.Api.request('people', (response) => {
-      this.setState({
-        people: response.results.map(item => Object.assign(item, {
-          title: item.name
-        }))
-      })
+    api.request('people', (response) => {
+      this.setState({people: response.results})
     });
   }
 
   showModal(data) {
     console.log(data);
+    this.setState({
+      modalData: data,
+      modalActive: true
+    });
+  }
+
+  hideModal() {
+    this.setState({
+      modalActive: false
+    });
+  }
+
+  handleSearchChange(event) {
+    this.setState({
+      search: event.target.value || ''
+    });
   }
 
   render() {
@@ -52,28 +70,31 @@ class App extends Component {
             <Tab>TV Shows</Tab>
             <Tab>People</Tab>
           </TabList>
-          <TabPanel>
-            <List
-              items={this.state.movies}
-              modal={this.showModal}
-            />
-          </TabPanel>
-          <TabPanel>
-            <List
-              items={this.state.tv}
-              modal={this.showModal}
-            />
-          </TabPanel>
-          <TabPanel>
-            <List
-              items={this.state.people}
-              modal={this.showModal}
-            />
-          </TabPanel>
+          {[this.state.movies,
+            this.state.tv,
+            this.state.people].map((panelItems, index) => (
+            <TabPanel key={index}>
+              <input
+                onChange={this.handleSearchChange.bind(this)}
+                value={this.state.search}
+              />
+              <List
+                items={panelItems}
+                filter={this.state.search}
+                clickHandler={this.showModal.bind(this)}
+              />
+            </TabPanel>
+          ))}
         </Tabs>
+        <Modal
+          isActive={this.state.modalActive}
+          data={this.state.modalData}
+          reqestCloseHandler={this.hideModal.bind(this)}
+          clickHandler={this.showModal.bind(this)}
+        />
       </div>
     );
-  }
+  } 
 }
 
 export default App;
