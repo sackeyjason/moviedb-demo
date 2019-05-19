@@ -1,3 +1,25 @@
+# Instructions
+
+## To run the code locally:
+
+(Requirements: install Node.js)
+
+1. Grab the git repository
+2. Navigate to the directory on your system
+3. Install dependencies
+4. Run the dev server
+
+i.e. run these commands:
+
+```
+git clone https://github.com/sackeyjason/moviedb-demo.git
+cd moviedb-demo
+npm install
+npm run start
+```
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
