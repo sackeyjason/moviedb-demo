@@ -23,10 +23,7 @@ class App extends Component {
   
   componentDidMount() {
     let api = new Api('d0aea524bd07ed49cbc26dff63f357dd');
-    api.request('configuration', (response) => {
-      console.log(response.images);
-      this.setState({imgConfig: response.images});
-    });
+    api.request('configuration', (response) => this.setState({imgConfig: response.images}));
     api.request('movie', (response) => {
       this.setState({
         movies: response.results.map(item => Object.assign(
@@ -34,12 +31,8 @@ class App extends Component {
         )
       })
     });
-    api.request('tv', (response) => {
-      this.setState({tv: response.results})
-    });
-    api.request('people', (response) => {
-      this.setState({people: response.results})
-    });
+    api.request('tv', (response) => this.setState({tv: response.results}));
+    api.request('people', (response) => this.setState({people: response.results}));
   }
 
   showModal(data) {
@@ -93,7 +86,7 @@ class App extends Component {
         <Modal
           isActive={this.state.modalActive}
           data={this.state.modalData}
-          reqestCloseHandler={this.hideModal.bind(this)}
+          requestCloseHandler={this.hideModal.bind(this)}
           clickHandler={this.showModal.bind(this)}
           imgConfig={this.state.imgConfig}
         />

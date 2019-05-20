@@ -6,7 +6,6 @@ if (document.getElementById('root')) {
 }
 
 function Modal(props) {
-  console.log(props.data);
   let overview, knownFor, image, backgroundImage;
   if (props.data.overview) overview = <p>{props.data.overview}</p>;
   if (props.data.known_for) {
@@ -39,7 +38,6 @@ function Modal(props) {
     if (props.data.backdrop_path) {
       backgroundImage = <img
         alt=""
-        style={{width: '100%'}}
         src={props.imgConfig.base_url + props.imgConfig.backdrop_sizes[1] + props.data.backdrop_path}
       />;
     }
@@ -48,7 +46,7 @@ function Modal(props) {
   return (
     <ReactModal
       isOpen={props.isActive}
-      onRequestClose={props.reqestCloseHandler}
+      onRequestClose={props.requestCloseHandler}
       style={{
         content: {
           maxWidth: '30rem',
@@ -68,14 +66,14 @@ function Modal(props) {
             cursor: 'pointer',
             padding: 0
           }}
-          onClick={props.reqestCloseHandler}
-          >&times; close</button>
+          onClick={props.requestCloseHandler}
+        >&times; close</button>
       </div>
       {image}
       <h2>{props.data.title || props.data.name}</h2>
       {overview}
       {knownFor}
-      {backgroundImage}      
+      {backgroundImage}
     </ReactModal>
   )
 }
