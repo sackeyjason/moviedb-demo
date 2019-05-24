@@ -22,7 +22,8 @@ class App extends Component {
   }
   
   componentDidMount() {
-    let api = new Api('d0aea524bd07ed49cbc26dff63f357dd');
+    console.log(process.env);
+    let api = new Api(process.env.REACT_APP_API_KEY);
     api.request('configuration', (response) => this.setState({imgConfig: response.images}));
     api.request('movie', (response) => {
       this.setState({

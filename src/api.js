@@ -1,4 +1,5 @@
 function Api(key) {
+  console.log(key);
   this.request = function (type, callback) {
     let data = "{}";
     let requestUrl = 'https://api.themoviedb.org/3/';
