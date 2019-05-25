@@ -1,13 +1,21 @@
 # Instructions
 
+##Requirements:
+
+- Node.js installed
+- moviedb API key
+
 ## To run the code locally:
 
-(Requirements: install Node.js)
-
 1. Grab the git repository
-2. Navigate to the directory on your system
-3. Install dependencies
-4. Run the dev server
+2. Install dependencies
+3. Put API key in an text file named .env  
+  Like this:
+    ```
+    export REACT_APP_API_KEY="123_key_goes_here"
+    ```
+6. Source the .env file
+5. Run the dev server
 
 i.e. run these commands:
 
@@ -15,8 +23,13 @@ i.e. run these commands:
 git clone https://github.com/sackeyjason/moviedb-demo.git
 cd moviedb-demo
 npm install
+echo export REACT_APP_API_KEY="123_key_goes_here" > .env
+source .env
 npm run start
 ```
+
+Problems with the api key? Different systems have different methods of setting environment variables, refer to this: https://facebook.github.io/create-react-app/docs/adding-custom-environment-variables
+
 
 ---
 
